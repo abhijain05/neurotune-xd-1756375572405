@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebDynpro xmlns="http://www.sap.com/wd/webdynpro">
+  <View name="ProductSetupWizard">
+    <Title>Product Setup Wizard</Title>
+    <TabStrip id="tabStrip">
+      <Tab id="tabBasicInfo" text="Basic Info">
+        <FormContainer id="formBasicInfo">
+          <FormElement id="formElementName">
+            <Label text="Name" />
+            <InputField id="inputFieldName" value="{/productName}" />
+          </FormElement>
+          <FormElement id="formElementCategory">
+            <Label text="Category" />
+            <DropDownByKey id="dropDownCategory" key="{/productCategory}" items="{/categories}" />
+          </FormElement>
+        </FormContainer>
+      </Tab>
+      <Tab id="tabPricing" text="Pricing">
+        <FormContainer id="formPricing">
+          <FormElement id="formElementPrice">
+            <Label text="Price" />
+            <InputField id="inputFieldPrice" value="{/productPrice}" />
+          </FormElement>
+          <FormElement id="formElementDiscounts">
+            <Label text="Discounts" />
+            <InputField id="inputFieldDiscounts" value="{/productDiscounts}" />
+          </FormElement>
+        </FormContainer>
+      </Tab>
+      <Tab id="tabImages" text="Images">
+        <!--  WebDynpro doesn't have a direct multi-upload component.  This would require a custom solution or workaround. -->
+        <TextView text="Image Upload (Implementation Required)" />
+      </Tab>
+      <Tab id="tabSpecifications" text="Specifications">
+        <Table id="tableSpecifications">
+          <Columns>
+            <Column id="colKey">
+              <Label text="Key" />
+            </Column>
+            <Column id="colValue">
+              <Label text="Value" />
+            </Column>
+          </Columns>
+          <!--  Data binding for table rows would be complex and require a custom structure -->
+        </Table>
+      </Tab>
+      <Tab id="tabPreviewPublish" text="Preview &amp; Publish">
+        <TextView text="Preview and Publish functionality (Implementation Required)" />
+        <Button id="buttonPublish" text="Publish" />
+      </Tab>
+    </TabStrip>
+    <MessageArea id="messageArea" />
+  </View>
+  <Controller name="ProductSetupWizardController">
+    <method name="onInit">
+      <!-- Initialization logic -->
+    </method>
+    <method name="onPublish">
+      <!-- Publish logic -->
+    </method>
+
+    <!-- Methods for handling image uploads and specifications table would need to be added here. -->
+    <!-- Example: onAddSpecification, onRemoveSpecification, onUploadImage, etc. -->
+  </Controller>
+</WebDynpro>
