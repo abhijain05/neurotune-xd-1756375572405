@@ -1,46 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mvc:View xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m"
-  xmlns:layout="sap.ui.layout"
-  xmlns:form="sap.ui.layout.form"
-  xmlns:core="sap.ui.core"
-  xmlns:richtexteditor="sap.ui.richtexteditor"
-  xmlns:viz="sap.viz.ui5"
-  controllerName="preview.app.controller.ProductSetupWizardView"
-  displayBlock="true">
-  <Page title="ProductSetupWizardView" enableScrolling="true">
-    <content>
-      <Title id="title_3dphaehw" text="Product Setup Wizard"/>
-      <IconTabBar id="tabStrip" width="100%" expandable="false">
-        <items>
-          <IconTabFilter id="tabFilter_ibtqwxblp" text="Basic Info" key="tab0" icon="sap-icon://document">
-            <content>
-              <Text id="element_2if7vrp9"/>
-            </content>
-          </IconTabFilter>
-          <IconTabFilter id="tabFilter_gi26ja3rl" text="Pricing" key="tab1" icon="sap-icon://document">
-            <content>
-              <Text id="element_nz07ubfp"/>
-            </content>
-          </IconTabFilter>
-          <IconTabFilter id="tabFilter_6oo7sascg" text="Images" key="tab2" icon="sap-icon://document">
-            <content>
-              <Text id="element_h7m6id6s"/>
-            </content>
-          </IconTabFilter>
-          <IconTabFilter id="tabFilter_ly6oe735t" text="Specifications" key="tab3" icon="sap-icon://document">
-            <content>
-              <Text id="element_cobtdi1y"/>
-            </content>
-          </IconTabFilter>
-          <IconTabFilter id="tabFilter_ke0t0bvb9" text="Preview &amp; Publish" key="tab4" icon="sap-icon://document">
-            <content>
-              <Text id="element_fpva2pz6"/>
-            </content>
-          </IconTabFilter>
-        </items>
-      </IconTabBar>
-      <MessagePopover id="messageArea"/>
-    </content>
-  </Page>
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	controllerName="converted.productsetupwizardview.controller.ProductSetupWizardView"
+	displayBlock="true">
+	<Page title="Product Setup Wizard" enableScrolling="true">
+		<content>
+			<IconTabBar id="tabStrip" expandable="false">
+				<items>
+					<IconTabFilter id="tabBasicInfo" text="Basic Info" key="tab0" icon="sap-icon://document">
+						<content>
+							<form:SimpleForm id="formBasicInfo" editable="true" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+								adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+								layout="ResponsiveGridLayout" class="sapUiSmallMargin">
+								<form:content>
+									<form:FormElement label="Name">
+										<Input id="productName" value="{/product/name}" placeholder="Product Name"/>
+									</form:FormElement>
+									<form:FormElement label="Category">
+										<Select id="productCategory" selectedKey="{/product/category}" items="{categories>/}" >
+                      <core:Item key="{categories>key}" text="{categories>name}"/>
+                    </Select>
+									</form:FormElement>
+								</form:content>
+							</form:SimpleForm>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter id="tabPricing" text="Pricing" key="tab1" icon="sap-icon://document">
+						<content>
+							<form:SimpleForm id="formPricing" editable="true" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+								adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+								layout="ResponsiveGridLayout" class="sapUiSmallMargin">
+								<form:content>
+									<form:FormElement label="Price">
+										<Input id="productPrice" value="{/product/price}" placeholder="Price" type="Number"/>
+									</form:FormElement>
+									<form:FormElement label="Discounts">
+										<Input id="productDiscounts" value="{/product/discounts}" placeholder="Discounts" type="Number"/>
+									</form:FormElement>
+								</form:content>
+							</form:SimpleForm>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter id="tabImages" text="Images" key="tab2" icon="sap-icon://document">
+						<content>
+							<Text text="Image Upload (Implementation Required)"/>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter id="tabSpecifications" text="Specifications" key="tab3" icon="sap-icon://document">
+						<content>
+							<Table id="specificationsTable" items="{specifications>}" width="100%">
+								<columns>
+									<Column>
+										<header>
+											<Text text="Key"/>
+										</header>
+									</Column>
+									<Column>
+										<header>
+											<Text text="Value"/>
+										</header>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{specifications>key}"/>
+											<Text text="{specifications>value}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+							<Button text="Export to CSV" press=".onExportToCSV"/>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter id="tabPreviewPublish" text="Preview &amp; Publish" key="tab4" icon="sap-icon://document">
+						<content>
+							<Text text="Preview and Publish functionality (Implementation Required)"/>
+							<Button text="Publish" id="buttonPublish"/>
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+			<Button text="GET DATA" press=".onGetData" class="sapUiSmallMargin"/>
+			<Button text="EXIT" press=".onExit" class="sapUiSmallMargin"/>
+		</content>
+	</Page>
 </mvc:View>
